@@ -1,0 +1,32 @@
+/* App Component - Main Layout */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: #ffffff;
+}
+
+/* Main content wrapper - accounts for fixed navbar */
+.main-content {
+  padding-top: 80px;
+  /* Height of navbar */
+  min-height: 100vh;
+  position: relative;
+}
+
+.dark {
+  background: #0d0d0d;
+  color: white;
+  transition: 0.5s;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure router-outlet content fills space */
+router-outlet+* {
+  display: block;
+}
