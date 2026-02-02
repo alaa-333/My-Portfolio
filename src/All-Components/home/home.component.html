@@ -1,0 +1,121 @@
+<section id="about" class="py-8 py-lg-10 px-3 px-lg-5">
+  <div class="container-max-width">
+    <!-- Section Header -->
+    <div class="d-flex align-items-center gap-3 mb-5 mb-lg-6">
+      <h2 class="fs-3 fs-lg-2 fw-bold section-title">
+        <span class="text-accent">01.</span> About Me
+      </h2>
+      <div class="flex-grow-1 hr-divider"></div>
+    </div>
+
+    <div class="row g-4 g-lg-5">
+      <!-- Content Column -->
+      <div class="col-lg-7 order-2 order-lg-1">
+        <!-- Bio Card -->
+        <div class="card custom-card mb-4 mb-lg-5">
+          <div class="card-header border-0 pb-0">
+            <h3 class="card-title fw-semibold fs-5">Background</h3>
+            <p class="card-subtitle text-secondary mb-0">Building scalable systems since 2023</p>
+          </div>
+          <div class="card-body">
+            <p class="mb-3 text-white">
+              Junior Java Back-End Developer with 1+ years of hands-on experience building secure, scalable RESTful
+              APIs. I specialize in
+              <span class="text-java">Java</span> and the <span class="text-spring">Spring Boot ecosystem</span>, with
+              expertise in Hibernate/JPA and Spring Security.
+            </p>
+            <p class="mb-3">
+              My journey began as a trainee at EraaSoft, where I developed server-side applications and implemented
+              JWT-based authentication systems. I've built production-ready e-commerce platforms and social networking
+              backends, always focusing on clean code, security best practices, and operational efficiency.
+            </p>
+            <p>
+              Currently pursuing my Bachelor's in Information Technology at New Cairo Technological University. I'm
+              passionate about applying SOLID principles, design patterns, and Agile methodologies to deliver robust
+              backend solutions.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech Stack Card -->
+        <div class="card custom-card">
+          <div class="card-header border-0 pb-0">
+            <h3 class="card-title fw-semibold fs-5">Tech Stack</h3>
+            <p class="card-subtitle text-secondary mb-0">Technologies I work with daily</p>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-wrap gap-2">
+              @for (tech of technologies; track tech.name) {
+              <span class="tech-badge" [class]="tech.variant">
+                {{ tech.name }}
+              </span>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Column -->
+      <div class="col-lg-5 order-1 order-lg-2">
+        <div class="card custom-card overflow-hidden h-100">
+          <div class="card-body p-0">
+            <!-- Profile Image Container -->
+            <div class="profile-container">
+              <!-- Placeholder Avatar (replace with <img> when image available) -->
+              <div class="profile-placeholder d-flex align-items-center justify-content-center">
+                <img src="p1.jpg" class="profile-image  img-fluid" alt="">
+              </div>
+
+              <!-- Status Badge -->
+              <div class="status-badge">
+                <span class="status-dot"></span>
+                Available
+              </div>
+            </div>
+
+            <!-- Profile Info -->
+            <div class="p-4 p-lg-5">
+              <div class="mb-4">
+                <h3 class="h4 fw-bold mb-1 text-white">Alaa Mohamed</h3>
+                <div class="text-accent">Java Back-End Developer</div>
+              </div>
+
+              <div class="d-flex flex-column gap-3 text-secondary mb-4">
+                <div class="d-flex align-items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s-4-3-8-8 8-8 8-8" />
+                  </svg>
+                  <span>Cairo, Egypt</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+                    <line x1="6" y1="8" x2="18" y2="8" />
+                    <line x1="6" y1="12" x2="12" y2="12" />
+                  </svg>
+                  <span>Open to opportunities</span>
+                </div>
+              </div>
+
+              <!-- Stats Grid - FIXED SVG BINDING -->
+              <div class="stats-grid pt-3 mt-3 border-top border-secondary-subtle">
+                @for (stat of stats; track stat.label) {
+                <div class="stat-item text-center p-3 rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-2 text-accent">
+                    <path [attr.d]="stat.pathD" /> <!-- ✅ FIXED: Safe binding -->
+                  </svg>
+                  <div class="stat-label fs-8 text-secondary">{{ stat.label }}</div>
+                  <div class="stat-value fw-semibold">{{ stat.value }}</div>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

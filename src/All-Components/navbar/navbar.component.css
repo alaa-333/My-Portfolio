@@ -1,0 +1,287 @@
+/* ============================================
+   NAVBAR - Premium Glassmorphic Navigation
+   ============================================ */
+
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  animation: navSlideDown 0.6s ease-out;
+}
+
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar Base */
+.navbar {
+  background: rgba(13, 13, 13, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 255, 136, 0.08);
+  padding: 0.85rem 0;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Navbar glow line at bottom */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 255, 136, 0.3) 20%,
+      rgba(0, 212, 255, 0.4) 50%,
+      rgba(168, 85, 247, 0.3) 80%,
+      transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.navbar:hover::after {
+  opacity: 1;
+}
+
+/* ============================================
+   LOGO STYLING
+   ============================================ */
+.logo-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.logo-bracket {
+  color: var(--accent-primary, #00ff88);
+  font-size: 1.4rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo-text {
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Logo Hover Effects */
+.logo-link:hover {
+  background: rgba(0, 255, 136, 0.05);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.15);
+}
+
+.logo-link:hover .logo-bracket:first-child {
+  transform: translateX(-3px) rotate(-10deg);
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+}
+
+.logo-link:hover .logo-bracket:last-child {
+  transform: translateX(3px) rotate(10deg);
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+}
+
+.logo-link:hover .logo-text {
+  background: linear-gradient(135deg, #fff 0%, var(--accent-secondary, #00d4ff) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation Links */
+.nav-link {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(168, 168, 179, 0.9) !important;
+  padding: 0.65rem 1.35rem !important;
+  margin: 0 0.35rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Animated underline */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary, #00ff88), var(--accent-secondary, #00d4ff));
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Terminal cursor on hover */
+.nav-link::after {
+  content: '▋';
+  position: absolute;
+  right: 0.5rem;
+  opacity: 0;
+  color: var(--accent-primary, #00ff88);
+  font-size: 0.7rem;
+  animation: cursorBlink 1s step-end infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(0, 255, 136, 0.06);
+}
+
+.nav-link:hover::before {
+  width: 60%;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+/* Active State */
+.nav-link.active,
+.bg-info {
+  color: #00ff88 !important;
+  background: rgba(0, 255, 136, 0.1) !important;
+  box-shadow:
+    0 0 25px rgba(0, 255, 136, 0.15),
+    inset 0 0 25px rgba(0, 255, 136, 0.03);
+  border-radius: 8px !important;
+}
+
+.nav-link.active::before {
+  width: 70%;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* Mobile Toggler */
+.navbar-toggler {
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  padding: 0.6rem 0.85rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-toggler::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-toggler:hover::before {
+  opacity: 1;
+}
+
+.navbar-toggler:hover {
+  border-color: #00ff88;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  transform: scale(1.05);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%2300ff88' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  transition: transform 0.3s ease;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+  transform: rotate(90deg);
+}
+
+.bg {
+  background: transparent !important;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(13, 13, 13, 0.98);
+    border-radius: 12px;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    animation: mobileMenuDrop 0.4s ease-out;
+  }
+
+  @keyframes mobileMenuDrop {
+    from {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .nav-link {
+    padding: 0.85rem 1.25rem !important;
+    margin: 0.3rem 0;
+    text-align: center;
+  }
+
+  .nav-link::before {
+    display: none;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+}
+
+/* Scroll effect */
+.navbar.scrolled {
+  background: rgba(13, 13, 13, 0.95) !important;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+  padding: 0.6rem 0;
+}
+
+.navbar.scrolled::after {
+  opacity: 1;
+}

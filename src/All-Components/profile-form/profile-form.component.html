@@ -1,0 +1,267 @@
+<div class="container" [class.d-none]="state" [class.d-block]="!state">
+
+
+<div class="profile-form-container">
+  <!-- Header Section -->
+  <div class="profile-header text-center mb-5">
+    <h1 class="display-4 fw-bold">Hello I'm</h1>
+    <h2 class="display-5">Frontend Developer</h2>
+    <p class="lead mt-3">
+      I'm passionate about creating visually appealing designs<br>
+      and optimizing SEO for your business with modern tools...
+    </p>
+  </div>
+
+  <!-- Main Form -->
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+    <!-- Basic Information Section -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white py-3">
+        <h3 class="mb-0"><i class="bi bi-person-fill me-2"></i>Basic Information</h3>
+      </div>
+      <div class="card-body" formGroupName="basicInfo">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Full Name</label>
+            <input type="text" class="form-control" formControlName="name"
+                   [class.is-invalid]="basicInfo.get('name')?.touched && basicInfo.get('name')?.invalid">
+            <div class="invalid-feedback" *ngIf="basicInfo.get('name')?.touched && basicInfo.get('name')?.errors">
+              Name is required
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Job Title</label>
+            <input type="text" class="form-control" formControlName="jobTitle"
+                   [class.is-invalid]="basicInfo.get('jobTitle')?.touched && basicInfo.get('jobTitle')?.invalid">
+            <div class="invalid-feedback" *ngIf="basicInfo.get('jobTitle')?.touched && basicInfo.get('jobTitle')?.errors">
+              Job title is required
+            </div>
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">About</label>
+            <textarea class="form-control" rows="3" formControlName="about"
+                      [class.is-invalid]="basicInfo.get('about')?.touched && basicInfo.get('about')?.invalid"></textarea>
+            <div class="invalid-feedback" *ngIf="basicInfo.get('about')?.touched && basicInfo.get('about')?.errors">
+              About section is required
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Section -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white py-3">
+        <h3 class="mb-0"><i class="bi bi-book-fill me-2"></i>Education</h3>
+      </div>
+      <div class="card-body">
+        <div formArrayName="educations">
+          <div *ngFor="let education of educations.controls; let i = index" [formGroupName]="i" class="education-entry mb-4">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Degree</label>
+                <input type="text" class="form-control" formControlName="degree"
+                       [class.is-invalid]="getEducationControl(i, 'degree')?.touched && getEducationControl(i, 'degree')?.invalid">
+                <div class="invalid-feedback" *ngIf="getEducationControl(i, 'degree')?.touched && getEducationControl(i, 'degree')?.errors">
+                  Degree is required
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Institution</label>
+                <input type="text" class="form-control" formControlName="institution"
+                       [class.is-invalid]="getEducationControl(i, 'institution')?.touched && getEducationControl(i, 'institution')?.invalid">
+                <div class="invalid-feedback" *ngIf="getEducationControl(i, 'institution')?.touched && getEducationControl(i, 'institution')?.errors">
+                  Institution is required
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Year</label>
+                <input type="text" class="form-control" formControlName="year"
+                       [class.is-invalid]="getEducationControl(i, 'year')?.touched && getEducationControl(i, 'year')?.invalid">
+                <div class="invalid-feedback" *ngIf="getEducationControl(i, 'year')?.touched && getEducationControl(i, 'year')?.errors">
+                  Year is required
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-danger w-100"
+                        (click)="removeEducation(i)" [disabled]="educations.length <= 1">
+                  <i class="bi bi-trash-fill me-1"></i> Remove
+                </button>
+              </div>
+            </div>
+            <hr class="my-3" *ngIf="educations.length > 1 && i < educations.length - 1">
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary w-100 mt-2" (click)="addEducation()">
+          <i class="bi bi-plus-circle me-2"></i>Add Education
+        </button>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white py-3">
+        <h3 class="mb-0"><i class="bi bi-briefcase-fill me-2"></i>Experience</h3>
+      </div>
+      <div class="card-body">
+        <div formArrayName="experiences">
+          <div *ngFor="let experience of experiences.controls; let i = index" [formGroupName]="i" class="experience-entry mb-4">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Job Title</label>
+                <input type="text" class="form-control" formControlName="jobTitleExp"
+                       [class.is-invalid]="getExperienceControl(i, 'jobTitleExp')?.touched && getExperienceControl(i, 'jobTitleExp')?.invalid">
+                <div class="invalid-feedback" *ngIf="getExperienceControl(i, 'jobTitleExp')?.touched && getExperienceControl(i, 'jobTitleExp')?.errors">
+                  Job title is required
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Company</label>
+                <input type="text" class="form-control" formControlName="company"
+                       [class.is-invalid]="getExperienceControl(i, 'company')?.touched && getExperienceControl(i, 'company')?.invalid">
+                <div class="invalid-feedback" *ngIf="getExperienceControl(i, 'company')?.touched && getExperienceControl(i, 'company')?.errors">
+                  Company is required
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Duration</label>
+                <input type="text" class="form-control" formControlName="duration"
+                       [class.is-invalid]="getExperienceControl(i, 'duration')?.touched && getExperienceControl(i, 'duration')?.invalid">
+                <div class="invalid-feedback" *ngIf="getExperienceControl(i, 'duration')?.touched && getExperienceControl(i, 'duration')?.errors">
+                  Duration is required
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-danger w-100"
+                        (click)="removeExperience(i)" [disabled]="experiences.length <= 1">
+                  <i class="bi bi-trash-fill me-1"></i> Remove
+                </button>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Description</label>
+                <textarea class="form-control" rows="2" formControlName="description"
+                          [class.is-invalid]="getExperienceControl(i, 'description')?.touched && getExperienceControl(i, 'description')?.invalid"></textarea>
+                <div class="invalid-feedback" *ngIf="getExperienceControl(i, 'description')?.touched && getExperienceControl(i, 'description')?.errors">
+                  Description is required
+                </div>
+              </div>
+            </div>
+            <hr class="my-3" *ngIf="experiences.length > 1 && i < experiences.length - 1">
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary w-100 mt-2" (click)="addExperience()">
+          <i class="bi bi-plus-circle me-2"></i>Add Experience
+        </button>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white py-3">
+        <h3 class="mb-0"><i class="bi bi-tools me-2"></i>Skills</h3>
+      </div>
+      <div class="card-body">
+        <div formArrayName="skills">
+          <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i" class="skill-entry mb-3">
+            <div class="row g-3">
+              <div class="col-md-5">
+                <label class="form-label fw-semibold">Skill Name</label>
+                <input type="text" class="form-control" formControlName="skillName"
+                       [class.is-invalid]="getSkillControl(i, 'skillName')?.touched && getSkillControl(i, 'skillName')?.invalid">
+                <div class="invalid-feedback" *ngIf="getSkillControl(i, 'skillName')?.touched && getSkillControl(i, 'skillName')?.errors">
+                  Skill name is required
+                </div>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label fw-semibold">Skill Level</label>
+                <select class="form-select" formControlName="skillLevel">
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                  <option value="Expert">Expert</option>
+                </select>
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-danger w-100"
+                        (click)="removeSkill(i)" [disabled]="skills.length <= 1">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="my-3" *ngIf="skills.length > 1 && i < skills.length - 1">
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary w-100 mt-2" (click)="addSkill()">
+          <i class="bi bi-plus-circle me-2"></i>Add Skill
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white py-3">
+        <h3 class="mb-0"><i class="bi bi-code-square me-2"></i>Projects</h3>
+      </div>
+      <div class="card-body">
+        <div formArrayName="projects">
+          <div *ngFor="let project of projects.controls; let i = index" [formGroupName]="i" class="project-entry mb-4">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Project Name</label>
+              <input type="text" class="form-control" formControlName="projectName"
+                     [class.is-invalid]="getProjectControl(i, 'projectName')?.touched && getProjectControl(i, 'projectName')?.invalid">
+              <div class="invalid-feedback" *ngIf="getProjectControl(i, 'projectName')?.touched && getProjectControl(i, 'projectName')?.errors">
+                Project name is required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Project Description</label>
+              <textarea class="form-control" rows="3" formControlName="projectDescription"
+                        [class.is-invalid]="getProjectControl(i, 'projectDescription')?.touched && getProjectControl(i, 'projectDescription')?.invalid"></textarea>
+              <div class="invalid-feedback" *ngIf="getProjectControl(i, 'projectDescription')?.touched && getProjectControl(i, 'projectDescription')?.errors">
+                Project description is required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Technologies Used</label>
+              <input type="text" class="form-control" formControlName="technologies"
+                     [class.is-invalid]="getProjectControl(i, 'technologies')?.touched && getProjectControl(i, 'technologies')?.invalid">
+              <div class="invalid-feedback" *ngIf="getProjectControl(i, 'technologies')?.touched && getProjectControl(i, 'technologies')?.errors">
+                Technologies are required
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Live Demo URL</label>
+                <input type="url" class="form-control" formControlName="liveDemo">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Source Code URL</label>
+                <input type="url" class="form-control" formControlName="sourceCode">
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline-danger mt-3"
+                    (click)="removeProject(i)" [disabled]="projects.length <= 1">
+              <i class="bi bi-trash-fill me-1"></i>Remove Project
+            </button>
+            <hr class="my-3" *ngIf="projects.length > 1 && i < projects.length - 1">
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary w-100 mt-2" (click)="addProject()">
+          <i class="bi bi-plus-circle me-2"></i>Add Project
+        </button>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-grid mt-4">
+      <button type="submit"  class="btn btn-primary btn-lg py-3 fw-bold" [disabled]="profileForm.invalid">
+        <i class="bi bi-check-circle-fill me-2"></i>Submit Profile
+      </button>
+    </div>
+  </form>
+
+
+
+
+
+</div>

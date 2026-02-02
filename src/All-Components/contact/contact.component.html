@@ -1,0 +1,65 @@
+<section id="contact" class="contact-section py-8 py-lg-10 px-3 px-lg-5">
+  <div class="container-max-width text-center">
+    <!-- Section Header -->
+    <p class="section-label mb-3">What's Next?</p>
+    <h2 class="section-title mb-4">Get In Touch</h2>
+
+    <!-- Terminal Contact Card -->
+    <div class="terminal-card border rounded-3 mb-5 mb-lg-6 text-start">
+      <!-- Terminal Header -->
+      <div class="terminal-header d-flex align-items-center gap-2">
+        <div class="terminal-dot dot-red"></div>
+        <div class="terminal-dot dot-yellow"></div>
+        <div class="terminal-dot dot-green"></div>
+        <span class="terminal-service-name">contact-service.sh</span>
+      </div>
+
+      <div class="terminal-content">
+        <p class="text-secondary mb-1">
+          <span class="text-accent me-1">$</span>curl -X POST /api/v1/contact
+        </p>
+        <p class="text-secondary mb-1">
+          <span class="text-json-brace">{{ '{' }}</span>
+        </p>
+        <p class="text-secondary ps-4 mb-1">
+          <span class="text-json-key">"status"</span>:
+          <span class="text-json-value">"AVAILABLE"</span>,
+        </p>
+        <p class="text-secondary ps-4 mb-1">
+          <span class="text-json-key">"response_time"</span>:
+          <span class="text-json-value">"&lt; 24 hours"</span>,
+        </p>
+        <p class="text-secondary ps-4 mb-1">
+          <span class="text-json-key">"open_to"</span>: [
+          <span class="text-json-value">"full-time"</span>,
+          <span class="text-json-value">"contract"</span>,
+          <span class="text-json-value">"Remote"</span>
+          ]
+        </p>
+        <p class="text-secondary mb-0">
+          <span class="text-json-brace">{{ '}' }}</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="contact-description mb-5 mb-lg-6">
+      I'm currently looking for new opportunities as a Java Back-End Developer
+      to build secure, scalable backend systems. Whether you have a question, want to
+      discuss a project, or just want to say hi, my inbox is always open. I'll try
+      my best to get back to you within 24 hours!
+    </p>
+
+    <!-- CTA Button -->
+    <a
+      [href]="sanitizedEmailUrl"
+      class="cta-button d-inline-flex align-items-center gap-2 text-decoration-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+      Say Hello
+    </a>
+  </div>
+</section>

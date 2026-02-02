@@ -1,0 +1,193 @@
+/* ============================================
+   PROFILE FORM - Backend Admin Panel Style
+   ============================================ */
+
+:host {
+    --bg-dark: #0d0d0d;
+    --bg-card: rgba(18, 18, 24, 0.95);
+    --bg-elevated: rgba(30, 30, 40, 0.95);
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8b3;
+    --accent-primary: #00ff88;
+    --accent-secondary: #00d4ff;
+    --border-color: rgba(0, 255, 136, 0.12);
+    --danger: #ff5f56;
+    display: block;
+    background: var(--bg-dark);
+    min-height: 100vh;
+}
+
+/* Header */
+.profile-header {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Grid pattern */
+.profile-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.profile-header h1,
+.profile-header h2 {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section cards */
+.section-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(20px);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.section-card:hover {
+    border-color: rgba(0, 255, 136, 0.25) !important;
+    box-shadow: 0 10px 40px rgba(0, 255, 136, 0.1);
+}
+
+.section-header {
+    background: var(--bg-elevated) !important;
+    border-radius: 16px 16px 0 0 !important;
+    padding: 1.25rem 1.5rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-primary) !important;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Form controls */
+.form-control,
+.form-select,
+input,
+textarea,
+select {
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    border-radius: 10px !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15) !important;
+    outline: none !important;
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+.form-label,
+label {
+    color: var(--text-secondary) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Add button */
+.btn-add {
+    border: 2px dashed var(--border-color) !important;
+    background-color: transparent !important;
+    color: var(--text-secondary) !important;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 10px !important;
+    padding: 0.85rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background-color: rgba(0, 255, 136, 0.1) !important;
+    border-color: var(--accent-primary) !important;
+    color: var(--accent-primary) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+}
+
+/* Primary button */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+    color: var(--bg-dark) !important;
+    font-weight: 600;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: all 0.4s ease !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.25) !important;
+}
+
+/* Danger/Delete button */
+.btn-danger {
+    background: rgba(255, 95, 86, 0.15) !important;
+    color: var(--danger) !important;
+    border: 1px solid rgba(255, 95, 86, 0.3) !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-danger:hover {
+    background: rgba(255, 95, 86, 0.25) !important;
+    box-shadow: 0 0 20px rgba(255, 95, 86, 0.2) !important;
+}
+
+/* Validation errors */
+.text-danger,
+.text-danger.small,
+.invalid-feedback {
+    color: var(--danger) !important;
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header {
+        padding: 2rem 0;
+    }
+
+    .section-card {
+        border-radius: 12px !important;
+    }
+
+    .section-header {
+        padding: 1rem 1.25rem !important;
+        border-radius: 12px 12px 0 0 !important;
+    }
+}
