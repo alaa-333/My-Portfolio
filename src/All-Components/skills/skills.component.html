@@ -1,0 +1,83 @@
+<section id="skills" class="py-8 py-lg-10 px-3 px-lg-5">
+    <div class="container-max-width">
+        <!-- Section Header -->
+        <div class="d-flex align-items-center gap-3 mb-5 mb-lg-6">
+            <h2 class="fs-3 fs-lg-2 fw-bold section-title">
+                <span class="text-accent">02.</span> Skills & Expertise
+            </h2>
+            <div class="flex-grow-1 hr-divider"></div>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="skills-grid">
+            @for (category of skillCategories; track category.title; let i = $index) {
+            <div class="skill-card" [style.--card-delay]="(i * 0.1) + 's'">
+                <!-- Card Header -->
+                <div class="skill-card-header">
+                    <div class="skill-icon-wrapper" [attr.data-accent]="category.accentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path [attr.d]="category.iconPathD" />
+                        </svg>
+                    </div>
+                    <h3 class="skill-category-title">{{ category.title }}</h3>
+                    <div class="skill-count">{{ category.skills.length }}</div>
+                </div>
+
+                <!-- Skills List -->
+                <div class="skill-list">
+                    @for (skill of category.skills; track skill.name; let j = $index) {
+                    <div class="skill-item" [style.--item-delay]="((i * 0.1) + (j * 0.05)) + 's'">
+                        <div class="skill-info">
+                            <span class="skill-name" [attr.data-variant]="skill.variant">{{ skill.name }}</span>
+                            @if (skill.proficiency) {
+                            <span class="skill-percentage">{{ skill.proficiency }}%</span>
+                            }
+                        </div>
+                        @if (skill.proficiency) {
+                        <div class="skill-progress-wrapper">
+                            <div class="skill-progress-track">
+                                <div class="skill-progress-bar" [style.width.%]="skill.proficiency"
+                                    [style.background]="getProgressBarColor(skill.variant)"
+                                    [style.--progress-delay]="((i * 0.15) + (j * 0.1)) + 's'">
+                                    <div class="skill-progress-glow"></div>
+                                </div>
+                            </div>
+                        </div>
+                        } @else {
+                        <div class="skill-badge">
+                            <span class="badge-dot"></span>
+                            Proficient
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Decorative Code Block -->
+        <div class="code-decoration">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                </div>
+                <span class="terminal-title">skills.java</span>
+            </div>
+            <div class="code-content">
+                <code>
+          <span class="syntax-annotation">&#64;Autowired</span><br>
+          <span class="syntax-keyword">private</span> <span class="syntax-class">SkillSet</span> <span class="syntax-variable">skills</span>;<br><br>
+          <span class="syntax-keyword">public</span> <span class="syntax-class">List&lt;Skill&gt;</span> <span class="syntax-function">getExpertise</span>() &#123;<br>
+          &nbsp;&nbsp;<span class="syntax-keyword">return</span> skills.<span class="syntax-function">stream</span>()<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;.<span class="syntax-function">filter</span>(s -&gt; s.proficiency &gt; <span class="syntax-number">80</span>)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;.<span class="syntax-function">collect</span>(<span class="syntax-class">Collectors</span>.<span class="syntax-function">toList</span>());<br>
+          &#125;
+        </code>
+            </div>
+        </div>
+    </div>
+</section>
