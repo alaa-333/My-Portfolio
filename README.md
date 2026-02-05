@@ -51,7 +51,7 @@ Make sure you have the following installed:
 npm install -g @angular/cli
 ```
 
-### Installation
+### Installation & & Instructions for clone and Usage Purpose
 
 1. **Clone the repository**
    ```bash
@@ -101,7 +101,7 @@ portfolio/
 │   │   ├── contact/             # Contact form
 │   │   ├── navbar/              # Navigation bar
 │   │   ├── footer/              # Footer component
-│   │   └── profile-form/        # Profile form component
+│   │      
 │   ├── app/                     # Root application module
 │   │   ├── services/            # Application services
 │   │   ├── app.component.*      # Root component
