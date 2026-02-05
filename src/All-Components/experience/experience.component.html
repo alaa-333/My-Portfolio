@@ -1,0 +1,95 @@
+<section id="experience" class="py-8 py-lg-10 px-3 px-lg-5 section-bg">
+  <div class="container-max-width">
+    <!-- Section Header -->
+    <div class="d-flex align-items-center gap-3 mb-5 mb-lg-6">
+      <h2 class="fs-3 fs-lg-2 fw-bold section-title">
+        <span class="text-accent">02.</span> Work Experience
+      </h2>
+      <div class="flex-grow-1 hr-divider"></div>
+    </div>
+
+    <!-- Server-style Tab Navigation -->
+    <div class="experience-card">
+      <!-- Tab Header - Service Registry Style -->
+      <div class="service-registry-header px-4 py-3 border-bottom border-secondary-subtle">
+        <span class="registry-label">
+          service-registry.yml — Active Services
+        </span>
+      </div>
+
+      <div class="row g-0">
+        <!-- Service List Tabs -->
+        <div class="col-md-4 border-bottom border-md-bottom-0 border-md-end border-secondary-subtle">
+          @for (exp of experiences; track exp.id) {
+            <button
+              type="button"
+              (click)="setActiveTab(exp.id)"
+              class="service-tab w-100 text-start px-4 py-3 border-start border-2 transition-all d-flex align-items-center gap-2"
+              [class.active]="activeTab() === exp.id">
+              <span class="service-status-dot" [class.active]="activeTab() === exp.id"></span>
+              <span class="service-name">{{ exp.company }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Experience Details -->
+        @if (activeExperience) {
+          <div class="col-md-8 p-4 p-lg-5">
+            <!-- Header -->
+            <div class="mb-4">
+              <h3 class="h4 fw-semibold">
+                {{ activeExperience.role }}
+                <span class="company-name"> {{ activeExperience.company }}</span>
+              </h3>
+
+              <div class="d-flex flex-wrap gap-3 mt-2 text-secondary fs-7">
+                <span class="d-flex align-items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  {{ activeExperience.period }}
+                </span>
+                <span class="d-flex align-items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  {{ activeExperience.location }}
+                </span>
+                <span class="d-flex align-items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor"
+                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s-4-3-8-8 8-8 8-8" />
+                  </svg>
+                  Port: {{ activeExperience.port }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <ul class="experience-description mb-4">
+              @for (item of activeExperience.description; track $index) {
+                <li class="d-flex gap-2 text-secondary">
+                  <span class="bullet-marker text-accent align-self-start mt-1">▹</span>
+                  <span>{{ item }}</span>
+                </li>
+              }
+            </ul>
+
+            <!-- Technologies -->
+            <div class="d-flex flex-wrap gap-2">
+              @for (tech of activeExperience.technologies; track tech) {
+                <span class="tech-badge">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 
 import { HomeComponent } from '../All-Components/home/home.component';
-import { CvComponent } from '../All-Components/cv/cv.component';
+import { ExperienceComponent } from '../All-Components/experience/experience.component';
 import { ProjectComponent } from '../All-Components/project/project.component';
 import { ContactComponent } from '../All-Components/contact/contact.component';
 import { SkillsComponent } from '../All-Components/skills/skills.component';
@@ -13,8 +13,9 @@ export const routes: Routes = [
 
   { path: 'home', component: HomeComponent },
 
-  // CV routing
-  { path: 'cv', component: CvComponent },
+  // Experience routing
+  { path: 'experience', component: ExperienceComponent },
+  { path: 'cv', redirectTo: 'experience', pathMatch: 'full' }, // Redirect old route
 
   { path: 'projects', component: ProjectComponent },
   { path: 'contact', component: ContactComponent },

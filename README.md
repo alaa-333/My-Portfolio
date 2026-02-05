@@ -14,6 +14,7 @@
 - 📄 **CV Section** - Detailed resume and professional experience
 - 💼 **Projects Gallery** - Portfolio of completed projects
 - 📧 **Contact Form** - Easy way to get in touch
+- 📥 **Download Resume** - One-click resume download from navbar
 - 📱 **Fully Responsive** - Optimized for all device sizes
 - 🎨 **Modern UI** - Clean design with Bootstrap 5 and FontAwesome icons
 
@@ -76,6 +77,15 @@ npm install -g @angular/cli
    
    The app will automatically reload when you make changes to the source files.
 
+5. **Add your resume (Important!)**
+   
+   Place your resume PDF file in the `public/` directory and name it `resume.pdf`:
+   ```
+   public/resume.pdf
+   ```
+   
+   This file will be available for download via the navbar button.
+
 ---
 
 ## 📁 Project Structure
@@ -85,20 +95,22 @@ portfolio/
 ├── src/
 │   ├── All-Components/          # Feature components
 │   │   ├── home/                # Home page component
-│   │   ├── cv/                  # CV/Resume component
+│   │   ├── experience/          # Experience/Resume component
+│   │   ├── skills/              # Skills showcase component
 │   │   ├── project/             # Projects showcase
 │   │   ├── contact/             # Contact form
 │   │   ├── navbar/              # Navigation bar
 │   │   ├── footer/              # Footer component
 │   │   └── profile-form/        # Profile form component
 │   ├── app/                     # Root application module
+│   │   ├── services/            # Application services
 │   │   ├── app.component.*      # Root component
 │   │   ├── app.config.ts        # App configuration
 │   │   └── app.routes.ts        # Routing configuration
 │   ├── index.html               # Main HTML file
 │   ├── main.ts                  # Application entry point
 │   └── styles.css               # Global styles
-├── public/                      # Static assets (images, icons)
+├── public/                      # Static assets (images, icons, resume)
 ├── angular.json                 # Angular workspace config
 ├── package.json                 # Dependencies and scripts
 └── tsconfig.json                # TypeScript configuration
@@ -140,9 +152,11 @@ The build artifacts will be stored in the `dist/` directory, optimized for:
 | Route | Component | Description |
 |-------|-----------|-------------|
 | `/` or `/home` | HomeComponent | Landing page with introduction |
-| `/cv` | CvComponent | Resume and experience |
+| `/experience` | ExperienceComponent | Resume and work experience |
+| `/cv` | Redirect to `/experience` | Legacy route redirect |
 | `/projects` | ProjectComponent | Project portfolio |
 | `/contact` | ContactComponent | Contact form |
+| `/skills` | SkillsComponent | Technical skills showcase |
 | `/**` | Redirect to home | 404 fallback |
 
 ---
