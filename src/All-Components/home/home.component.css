@@ -123,20 +123,19 @@
   }
 }
 
-/* Custom Card with premium effects */
+/* Custom Card with premium effects - OPTIMIZED */
 .custom-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  backdrop-filter: blur(30px);
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
-    box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 0.5s ease;
+  backdrop-filter: blur(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
   opacity: 0;
   animation: cardFadeUp 0.7s ease-out forwards;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  will-change: transform;
 }
 
 .custom-card:nth-child(1) {
@@ -163,7 +162,7 @@
   }
 }
 
-/* Gradient border */
+/* Gradient border - OPTIMIZED */
 .custom-card::before {
   content: '';
   position: absolute;
@@ -172,10 +171,11 @@
   background: linear-gradient(135deg, rgba(0, 255, 136, 0.4) 0%, transparent 50%, rgba(0, 212, 255, 0.3) 100%);
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
 }
 
-/* Glow effect */
+/* Glow effect - OPTIMIZED */
 .custom-card::after {
   content: '';
   position: absolute;
@@ -183,14 +183,15 @@
   background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.12) 0%, transparent 70%);
   z-index: -2;
   opacity: 0;
-  transition: opacity 0.5s ease;
-  filter: blur(30px);
+  transition: opacity 0.3s ease;
+  filter: blur(20px);
+  will-change: opacity;
 }
 
 .custom-card:hover {
-  transform: translateY(-8px) scale(1.01);
+  transform: translateY(-6px);
   border-color: transparent;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 255, 136, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(0, 255, 136, 0.1);
 }
 
 .custom-card:hover::before {
@@ -451,7 +452,7 @@
   }
 }
 
-/* Tech Badges with stagger animation */
+/* Tech Badges with stagger animation - OPTIMIZED */
 .tech-badge {
   padding: 0.45rem 1rem;
   border-radius: 8px;
@@ -462,12 +463,12 @@
   align-items: center;
   gap: 0.4rem;
   border: 1px solid transparent;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
   opacity: 0;
   animation: fadeIn 0.5s ease-out forwards;
+  will-change: transform;
 }
 
 .tech-badge:nth-child(1) {
@@ -515,6 +516,7 @@
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
   transition: left 0.5s ease;
+  will-change: left;
 }
 
 .tech-badge:hover::before {
@@ -522,8 +524,8 @@
 }
 
 .tech-badge:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Tech variants */
@@ -580,7 +582,7 @@
   box-shadow: 0 0 25px rgba(37, 99, 235, 0.25);
 }
 
-/* Stats Grid */
+/* Stats Grid - OPTIMIZED */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -591,9 +593,10 @@
   background: rgba(35, 35, 45, 0.6);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 
 .stat-item::before {
@@ -605,14 +608,15 @@
   height: 2px;
   background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
   transform: scaleX(0);
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .stat-item:hover {
   background: rgba(45, 45, 55, 0.8);
   border-color: rgba(0, 255, 136, 0.25);
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 136, 0.1);
 }
 
 .stat-item:hover::before {

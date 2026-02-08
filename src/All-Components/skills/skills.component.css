@@ -156,10 +156,8 @@
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    backdrop-filter: blur(30px);
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
-        border-color 0.5s ease,
-        box-shadow 0.5s ease;
+    backdrop-filter: blur(20px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
     opacity: 0;
@@ -167,6 +165,7 @@
     animation-delay: var(--card-delay, 0s);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     padding: 0;
+    will-change: transform;
 }
 
 @keyframes cardFadeUp {
@@ -181,7 +180,7 @@
     }
 }
 
-/* Gradient border */
+/* Gradient border - OPTIMIZED */
 .skill-card::before {
     content: '';
     position: absolute;
@@ -190,10 +189,11 @@
     background: linear-gradient(135deg, rgba(0, 255, 136, 0.4) 0%, transparent 50%, rgba(0, 212, 255, 0.3) 100%);
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
+    will-change: opacity;
 }
 
-/* Glow effect */
+/* Glow effect - OPTIMIZED */
 .skill-card::after {
     content: '';
     position: absolute;
@@ -201,14 +201,15 @@
     background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.12) 0%, transparent 70%);
     z-index: -2;
     opacity: 0;
-    transition: opacity 0.5s ease;
-    filter: blur(30px);
+    transition: opacity 0.3s ease;
+    filter: blur(20px);
+    will-change: opacity;
 }
 
 .skill-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-6px);
     border-color: transparent;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 8px 25px rgba(0, 255, 136, 0.1);
 }
 
 .skill-card:hover::before {
@@ -281,8 +282,8 @@
 }
 
 .skill-card:hover .skill-icon-wrapper {
-    transform: scale(1.1) rotate(-5deg);
-    box-shadow: 0 0 25px currentColor;
+    transform: scale(1.08) rotate(-3deg);
+    box-shadow: 0 0 20px currentColor;
 }
 
 .skill-category-title {
@@ -333,7 +334,8 @@
     opacity: 0;
     animation: fadeIn 0.5s ease-out forwards;
     animation-delay: var(--item-delay, 0s);
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+    will-change: transform;
 }
 
 @keyframes fadeIn {
@@ -349,7 +351,7 @@
 }
 
 .skill-item:hover {
-    transform: translateX(5px);
+    transform: translateX(3px);
 }
 
 .skill-info {

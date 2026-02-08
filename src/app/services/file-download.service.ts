@@ -4,7 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 
 /**
  * Service for handling file downloads
- * Uses Angular 19 best practices with inject() and standalone components
+ * Uses Angular 18 best practices with inject() and standalone components
  */
 @Injectable({
   providedIn: 'root'
